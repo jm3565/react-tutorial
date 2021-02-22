@@ -7,6 +7,8 @@ const Game = () => {
   const [history, setHistory] = useState([
     {
       squares: Array(9).fill(null),
+      col: null,
+      row: null,
     },
   ]);
   const [xIsNext, setXIsNext] = useState(true);
@@ -33,7 +35,11 @@ const Game = () => {
     }
 
     squaresCopy[i] = xIsNext ? "X" : "O";
-    setHistory(historyCopy.concat([{ squares: squaresCopy }]));
+    setHistory(
+      historyCopy.concat([
+        { squares: squaresCopy, col: (i % 3) + 1, row: Math.ceil((i + 1) / 3) },
+      ])
+    );
     setStepNumber(historyCopy.length);
     setXIsNext(!xIsNext);
 
@@ -47,7 +53,9 @@ const Game = () => {
   };
 
   const moves = history.map((step, move) => {
-    const desc = move ? "Go to move # " + move : "Go to game start";
+    const desc = move
+      ? `Go to move # ${move} - (${step.col}, ${step.row})`
+      : "Go to game start";
 
     return (
       <li key={move}>
