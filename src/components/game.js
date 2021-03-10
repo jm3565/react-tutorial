@@ -15,15 +15,18 @@ const Game = () => {
   const [isOver, setIsOver] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
   const [isAscending, setIsAscending] = useState(true);
+  const [winningSquares, setWinningSquares] = useState(null);
 
   const evaluateGame = (currentSquares) => {
     const winner = calculateWinner(currentSquares);
     if (winner) {
       setIsOver(true);
-      setStatus(`Winner: ${winner}`);
+      setStatus(`Winner: ${winner[0]}`);
+      setWinningSquares(winner[1]);
     } else {
       setIsOver(false);
       setStatus("Next player: " + (!xIsNext ? "X" : "O"));
+      setWinningSquares(null);
     }
   };
 
@@ -76,6 +79,7 @@ const Game = () => {
         <Board
           squares={history[stepNumber].squares}
           onClick={(i) => handleClick(i)}
+          winSquares={winningSquares}
         />
       </div>
       <div className="game-info">

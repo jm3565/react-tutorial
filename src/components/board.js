@@ -1,9 +1,15 @@
 import React from "react";
 import Square from "./square";
 
-const Board = ({ squares, onClick }) => {
+const Board = ({ squares, onClick, winSquares }) => {
   const renderSquare = (i) => {
-    return <Square value={squares[i]} onClick={() => onClick(i)} />;
+    return (
+      <Square
+        value={squares[i]}
+        highlight={winSquares ? winSquares.includes(i) : false}
+        onClick={() => onClick(i)}
+      />
+    );
   };
 
   return (

@@ -1,8 +1,14 @@
 import React from "react";
 
-const Square = ({ value, onClick }) => {
+const Square = ({ value, onClick, highlight }) => {
+  let classes = "square";
+
+  if (highlight) {
+    classes += " square-highlight";
+  }
+
   return (
-    <button className="square" onClick={onClick}>
+    <button className={classes} onClick={onClick}>
       {value}
     </button>
   );
