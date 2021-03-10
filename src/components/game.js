@@ -23,6 +23,9 @@ const Game = () => {
       setIsOver(true);
       setStatus(`Winner: ${winner[0]}`);
       setWinningSquares(winner[1]);
+    } else if (currentSquares.filter((s) => s == null).length === 0) {
+      setIsOver(true);
+      setStatus("It's a DRAW!");
     } else {
       setIsOver(false);
       setStatus("Next player: " + (!xIsNext ? "X" : "O"));
