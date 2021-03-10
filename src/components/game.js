@@ -14,6 +14,7 @@ const Game = () => {
   const [xIsNext, setXIsNext] = useState(true);
   const [isOver, setIsOver] = useState(false);
   const [stepNumber, setStepNumber] = useState(0);
+  const [isAscending, setIsAscending] = useState(true);
 
   const evaluateGame = (currentSquares) => {
     const winner = calculateWinner(currentSquares);
@@ -79,7 +80,12 @@ const Game = () => {
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{moves}</ol>
+        <div>
+          <button onClick={() => setIsAscending(!isAscending)}>
+            Toggle Order
+          </button>
+        </div>
+        <ol>{isAscending ? moves : moves.reverse()}</ol>
       </div>
     </div>
   );
